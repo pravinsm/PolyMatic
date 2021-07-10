@@ -110,7 +110,7 @@ function Form(props) {
               Selected Demo Time<sup>*</sup>
             </p>
             <div className="demo-time">
-              {["1-2", "3-4", "5-6", "7-8"].map((x) => (
+              {["1 - 2", "3 - 4", "5 - 6", "7 - 8"].map((x) => (
                 <button
                   className={x === demoTime ? "demo-time-active" : ""}
                   type="button"
