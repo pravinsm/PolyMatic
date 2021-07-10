@@ -1,6 +1,6 @@
-# PolyMatic Demo Link : 
+# PolyMatic Demo Link
 
-[Click Here](https://polymatic.netlify.app)
+Hosted in Netlify.[Click Here](https://polymatic.netlify.app)
 
 # Getting Started with Create React App
 
