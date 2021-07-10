@@ -5,6 +5,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Select from "react-select";
 import axios from "axios";
+import qs from "qs";
 
 const options = [
   { value: "Google", label: "Google" },
@@ -26,17 +27,34 @@ function Form(props) {
     if (name === "" || address === "" || phone === "" || demoTime === "") {
       alert("Error !");
     } else {
-      axios
-        .post(
-          `https://docs.google.com/forms/u/0/d/e/1FAIpQLScWUyeUYn_LuegxlH5SkFfGwXnZ4fW8u2cbFV_Kr4FRS3tTmw/formResponse?entry.923575230=${name}&entry.959771919=${address}&entry.1470857061=${phone}&entry.766642417=${demoTime}&entry.210369612=${selectedOption.value}`
-        )
-        .catch((error) => {
-          console.log(error);
-        });
+      axios({
+        method: "POST",
+        url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLScWUyeUYn_LuegxlH5SkFfGwXnZ4fW8u2cbFV_Kr4FRS3tTmw/formResponse",
+        data: qs.stringify({
+          "entry.923575230": `${name}`,
+          "entry.959771919": `${address}`,
+          "entry.1470857061": `${phone}`,
+          "entry.766642417": `${demoTime}`,
+          "entry.210369612": `${selectedOption.value}`,
+        }),
+        headers: {
+          "content-type": "application/x-www-form-urlencoded",
+        },
+      }).catch((error) => {
+        console.log(error);
+      });
+
+      //   axios
+      //     .post(
+      //       `https://docs.google.com/forms/u/0/d/e/1FAIpQLScWUyeUYn_LuegxlH5SkFfGwXnZ4fW8u2cbFV_Kr4FRS3tTmw/formResponse?entry.923575230=${name}&entry.959771919=${address}&entry.1470857061=${phone}&entry.766642417=${demoTime}&entry.210369612=${selectedOption.value}`
+      //     )
+      //     .catch((error) => {
+      //       console.log(error);
+      //     });
     }
   };
 
-  console.log(name, address, phone, demoTime, selectedOption.value);
+  //   console.log(name, address, phone, demoTime, selectedOption.value);
 
   return (
     <div className="form_container" ref={props.formRef}>
