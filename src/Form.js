@@ -25,7 +25,7 @@ function Form(props) {
     e.preventDefault();
 
     if (name === "" || address === "" || phone === "" || demoTime === "") {
-      alert("Error !");
+      alert("Please fill the required fields!");
     } else {
       axios({
         method: "POST",
@@ -35,10 +35,11 @@ function Form(props) {
           "entry.959771919": `${address}`,
           "entry.1470857061": `${phone}`,
           "entry.766642417": `${demoTime}`,
-          "entry.210369612": `${selectedOption.value}`,
+          "entry.210369612": `${selectedOption.value || ""}`,
         }),
         headers: {
           "content-type": "application/x-www-form-urlencoded",
+          "Access-Control-Allow-Origin": "*",
         },
       }).catch((error) => {
         console.log(error);
