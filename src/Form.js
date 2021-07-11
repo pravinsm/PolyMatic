@@ -4,8 +4,6 @@ import logo from "./images/Vector.png";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Select from "react-select";
-import axios from "axios";
-import qs from "qs";
 
 const options = [
   { value: "Google", label: "Google" },
@@ -22,40 +20,13 @@ function Form(props) {
   const [selectedOption, setSelectedOption] = useState("");
 
   const submitResponse = (e) => {
-    e.preventDefault();
-
     if (name === "" || address === "" || phone === "" || demoTime === "") {
+      e.preventDefault();
       alert("Please fill the required fields!");
-    } else {
-      axios({
-        method: "POST",
-        url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLScWUyeUYn_LuegxlH5SkFfGwXnZ4fW8u2cbFV_Kr4FRS3tTmw/formResponse",
-        data: qs.stringify({
-          "entry.923575230": `${name}`,
-          "entry.959771919": `${address}`,
-          "entry.1470857061": `${phone}`,
-          "entry.766642417": `${demoTime}`,
-          "entry.210369612": `${selectedOption.value || ""}`,
-        }),
-        headers: {
-          "content-type": "application/x-www-form-urlencoded",
-          "Access-Control-Allow-Origin": "*",
-        },
-      }).catch((error) => {
-        console.log(error);
-      });
-
-      //   axios
-      //     .post(
-      //       `https://docs.google.com/forms/u/0/d/e/1FAIpQLScWUyeUYn_LuegxlH5SkFfGwXnZ4fW8u2cbFV_Kr4FRS3tTmw/formResponse?entry.923575230=${name}&entry.959771919=${address}&entry.1470857061=${phone}&entry.766642417=${demoTime}&entry.210369612=${selectedOption.value}`
-      //     )
-      //     .catch((error) => {
-      //       console.log(error);
-      //     });
+      return false;
     }
+    return true;
   };
-
-  //   console.log(name, address, phone, demoTime, selectedOption.value);
 
   return (
     <div className="form_container" ref={props.formRef}>
@@ -82,7 +53,13 @@ function Form(props) {
             It's Completely{" "}
             <span style={{ color: "#3584A7", fontWeight: "bold" }}>Free!</span>
           </p>
-          <form>
+          <form
+            method="POST"
+            action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScWUyeUYn_LuegxlH5SkFfGwXnZ4fW8u2cbFV_Kr4FRS3tTmw/formResponse"
+            onSubmit={(e) => {
+              return submitResponse(e);
+            }}
+          >
             <p>
               Name<sup>*</sup>
             </p>
@@ -90,6 +67,7 @@ function Form(props) {
               type="text"
               placeholder="Enter your Name here"
               onChange={(e) => setName(e.target.value)}
+              name="entry.923575230"
             />
             <p>
               Address<sup>*</sup>
@@ -98,6 +76,7 @@ function Form(props) {
               type="text"
               placeholder="Enter your Address here"
               onChange={(e) => setAddress(e.target.value)}
+              name="entry.959771919"
             />
             <p>
               Phone Number<sup>*</sup>
@@ -107,6 +86,7 @@ function Form(props) {
               value={phone}
               onChange={(phone) => setPhone(phone)}
             />
+            <input type="hidden" value={phone} name="entry.1470857061" />
             <p>
               Selected Demo Time<sup>*</sup>
             </p>
@@ -122,6 +102,7 @@ function Form(props) {
                   {x}
                 </button>
               ))}
+              <input type="hidden" name="entry.766642417" value={demoTime} />
             </div>
             <p>Where did you hear about us?</p>
             <Select
@@ -130,16 +111,13 @@ function Form(props) {
               placeholder="Select"
               options={options}
               isSearchable={false}
+              name="entry.210369612"
               onChange={(e) => {
                 setSelectedOption(e);
               }}
             />
             <div className="form_button_wrapper">
-              <button
-                type="submit"
-                className="form_button"
-                onClick={submitResponse}
-              >
+              <button type="submit" className="form_button">
                 Continue
               </button>
             </div>
