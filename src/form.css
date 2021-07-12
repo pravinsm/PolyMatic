@@ -283,7 +283,7 @@ input:focus {
     height: 100%;
   }
   .terms_condition {
-    padding: 0px 37px;
+    padding: 0px 37px 4px 37px;
   }
 }
 
