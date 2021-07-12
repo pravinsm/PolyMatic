@@ -8,7 +8,6 @@
   border-radius: 15px;
   z-index: 100;
   display: none;
-  height: max-content;
 }
 
 .form_leftPart {
@@ -279,6 +278,12 @@ input:focus {
   }
   .terms_condition {
     font-size: 2vw;
+  }
+  .form_container {
+    height: 100%;
+  }
+  .terms_condition {
+    padding: 4px 37px;
   }
 }
 
