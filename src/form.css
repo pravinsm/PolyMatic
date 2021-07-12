@@ -8,6 +8,7 @@
   border-radius: 15px;
   z-index: 100;
   display: none;
+  height: max-content;
 }
 
 .form_leftPart {
