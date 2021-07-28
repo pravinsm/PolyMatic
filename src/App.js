@@ -1,5 +1,38 @@
 import React, { useRef } from "react";
-import Form from "./Form";
+import FormMUI from "./FormMUI";
+import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import { createTheme } from "@material-ui/core/styles";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      light: "#6b6295",
+      main: "#473b7b",
+      dark: "#312956",
+      contrastText: "#fff",
+    },
+    secondary: {
+      dark: "#255c74",
+      main: "#3584a7",
+      light: "#5d9cb8",
+      contrastText: "#fff",
+    },
+    third: {
+      light: "#59dbcb",
+      main: "#30d2be",
+      dark: "#219385",
+      contrastText: "#fff",
+    },
+  },
+});
+
+const useStyles = makeStyles({
+  container: {
+    display: "grid",
+    placeItems: "center",
+    height: "100vh",
+  },
+});
 
 const fillUpBtn = {
   background: "linear-gradient(90deg, #473B7B 0%, #3584A7 51%, #30D2BE 100%)",
@@ -19,18 +52,21 @@ const fillUpBtn = {
 };
 function App() {
   const formRef = useRef(null);
+  const classes = useStyles();
   return (
-    <div style={{ position: "relative", width: "100vw", height: "100vh" }}>
-      <button
-        style={fillUpBtn}
-        onClick={() => {
-          formRef.current.style.display = "block";
-        }}
-      >
-        Fill Up Form
-      </button>
-      <Form formRef={formRef} />
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className={classes.container}>
+        <button
+          style={fillUpBtn}
+          onClick={() => {
+            formRef.current.style.display = "flex";
+          }}
+        >
+          Fill Up Form
+        </button>
+        <FormMUI formRef={formRef} />
+      </div>
+    </ThemeProvider>
   );
 }
 

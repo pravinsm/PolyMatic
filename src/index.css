@@ -18,6 +18,42 @@ code {
     monospace;
 }
 
+/* react phone input style */
+.react-tel-input {
+  margin: 5px 0px;
+}
+
+.react-tel-input > input {
+  width: 100% !important;
+  margin: 5px 0px !important;
+  border: 2px solid #979797 !important;
+  border-radius: 10px !important;
+  height: 40px !important ;
+}
+.react-tel-input > input:focus {
+  border: 2px solid #3584a7 !important;
+}
+.react-tel-input .flag-dropdown {
+  border: none !important;
+  background: transparent !important;
+  border-radius: 10px !important;
+  left: 5px;
+}
+
+.react-tel-input .selected-flag:hover,
+.react-tel-input .selected-flag:focus {
+  background: transparent !important;
+}
+
+/* react select styling */
+.css-lpahdxg-control:hover {
+  border-color: #3584a7 !important;
+}
+
+.css-g1d714-ValueContainer {
+  height: 30px;
+}
+
 /* fonts */
 
 /* devanagari */
