@@ -15,13 +15,12 @@ const options = [
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
-    display: "flex",
+    display: "none",
     backgroundColor: "#ffffff",
     height: "90vh",
     width: "90vw",
     maxWidth: "960px",
     borderRadius: "15px",
-    display: "none",
     zIndex: 100,
   },
   leftPart: {
