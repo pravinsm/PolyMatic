@@ -183,9 +183,9 @@ const useStyles = makeStyles((theme) => ({
       "&:hover": {
         border: "2px solid #3584a7 !important",
       },
-      "& > div:nth-of-type(1)": {
-        height: "30px",
-      },
+      //   "& > div:nth-of-type(1)": {
+      //     height: "30px",
+      //   },
     },
   },
   formSubmit: {
